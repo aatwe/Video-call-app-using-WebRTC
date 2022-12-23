@@ -1,0 +1,52 @@
+API: Audio video streams in browser
+
+-> can est peer to peer connection bw 2 browsers
+
+> without 3rd party server or Native app
+
+
+a) First peer create offer for second
+	a.1) STP object created 	//contains what? connection info: codec/timing etc
+Ex
+v: (protocol version number)
+0: (originator and session identifier)
+5: (session name)
+i=* (session title or short information)
+u=* (URI of description)
+e=* (zero or more email address with optional name of contacts)
+p=* (zero or more phone number with optional name of contacts)
+b=* (zero or more bandwidth information lines)
+z=* (time zone adjustments)
+k=* (encryption key)
+a=* (zero or more session attribute lines)
+m: (media name and transport address)
+i=* (media title or information field)
+c=* (connection information)
+b=* (zero or more bandwidth information lines)
+k=* (encryption key)
+a=* (zero or more media attribute lines)
+
+
+	a.2) Where data saved? server
+
+b) Peer 2 reads data from server -> answer
+	How? STP Ans -> send to that server
+//Signalling server //does not touch data	
+
+
+What problem? devices behind firewalls ---> IP change constantly (How? network address translation)
+
+	peer to peer is difficult from networking perspective
+
+Solution? Interactive Connectivity Establishment //helps find public face in IP
+	How?
+	a) generate list of ICE CAndidates : contains what? IP + PORT for peer 1
+		How?
+	b) WebRTC
+		in background --> make series of requests to --> STUN Server (Session Transversal utilities for NAT) //can setup using google
+		ICE Candidates sof Peer 1 tored in DB in STUN Server
+		Other peerr reads
+
+		WebRTC Algo: finds which candidate is best
+		Realtime media will flow
+	
